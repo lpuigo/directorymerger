@@ -12,8 +12,8 @@ import (
 )
 
 const (
-	directory = `C:\Users\Laurent\Downloads\JDownloader`
-	ItsAMatch = 0.85
+	directory     = `C:\Users\Laurent\Downloads\JDownloader`
+	MinMatchScore = 0.85
 )
 
 func main() {
@@ -27,7 +27,7 @@ func main() {
 		if fd.IsDir() {
 			name := fd.Name()
 			fmt.Printf("%02d: %.3f %s\n", i, match(name, previous), name)
-			if match(name, previous) > ItsAMatch {
+			if match(name, previous) > MinMatchScore {
 				matchAction(name, previous)
 			} else {
 				notMAtchAction()
