@@ -25,12 +25,19 @@ func main() {
 	}
 }
 
+func reverse(a []os.FileInfo) {
+	for i := len(a)/2-1; i >= 0; i-- {
+		opp := len(a)-1-i
+		a[i], a[opp] = a[opp], a[i]
+	}
+}
+
 func mergeDir(dirname string) error {
 	fds, err := ioutil.ReadDir(dirname)
 	if err != nil {
 		return fmt.Errorf("could not read directory :%s", err.Error())
 	}
-
+	reverse(fds)
 	previous := ""
 	for i, fd := range fds {
 		if fd.IsDir() {
